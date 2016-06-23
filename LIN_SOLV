@@ -1,0 +1,143 @@
+#include<iostream.h>
+#include<conio.h>
+
+/*=============== THIS PROGRAM DOES===================
+finds inverse(using function void inverse())
+finds the multiplication of 2 matrices (suing function A_B_mult
+
+but im not able to do multiplication of inverse()*B;
+
+please help me out 
+ 
+*/
+void A_B_mult();
+void inverse();
+void X_mat();//protoype for finding X by multiplying A inverse and B 
+int  A[3][3],B[3][1],C[3][1],r,c,d,i,j,k,D[3][1],ch;
+float determinant=0,determinantB=0;;
+int main()
+{
+    
+
+
+cout<<"enter the first matrix row"<<endl;
+
+    /*input of data in matrix */
+    
+     
+for(r=0;r<3;r++)
+{
+   for(c=0;c<3;c++)
+  {
+     cin>>A[r][c];
+  }
+}
+    
+cout<<"enter the second matrix to check equality"<<endl;
+for(r=0;r<3;r++)
+{
+   for(c=0;c<1;c++)
+  {
+     cin>>B[r][c];
+  }
+ }
+
+cout<<"1.inverse of A"<<endl<<"2.multiplication(only A and B & not inverse and B)"<<endl<<"3.multiplication of A inverse and B(to be worked out)"<<endl;
+ 
+cin>>ch;//to accpt the value for choice of multiplication or inverse
+
+if(ch==1)
+{
+         inverse();
+}
+else if(ch==2) 
+{
+     
+     A_B_mult();
+}
+/*else if(ch==3)
+{
+   
+    X_mat();  
+}*/
+
+getch();
+return 0;
+}
+ 
+ //===============multiplication of a matrix with b=================
+void A_B_mult()
+{ 
+    for(i=0;i<3;i++)//start of operation of multiplication
+    {
+        for(j=0;j<1;j++)
+        {
+           D[3][1]=0;
+            
+           for(k=0;k<3;k++)
+            {
+               D[i][j]=D[i][j]+A[i][k]*B[k][j];
+                
+               }
+                
+            }
+            
+     }//end of loop
+    
+  for(i=0;i<3;i++)
+    
+  {
+        for(j=0;j<1;j++)
+        {
+           cout<<" "<<D[i][j];
+            
+          }
+            
+        cout<<endl;
+        
+     }//end of output loop
+        
+       
+
+  }//end of function matmult 
+ 
+ 
+void inverse()
+{
+    //==========INVERSE OF A================
+ 
+ 
+  determinant= A[0][0]*((A[1][1]*A[2][2])-(A[2][1]*A[1][2]))-A[0][1]*((A[1][0]*A[2][2])-(A[2][0]*A[1][2]))+A[0][2]*((A[1][0]*A[2][1])-(A[2][0]*A[1][1]));
+  
+  if(determinant!=0)
+  { 
+       cout<<"the inverse of the matrix A is "<<endl;       
+   for(i=0;i<3;i++)//output loop
+  {
+   cout<<"\n";
+       for(j=0;j<3;j++)
+       {
+              cout<<" "<<((A[(i+1)%3][(j+1)%3]*A[(i+2)%3][(j+2)%3])-(A[(i+1)%3][(j+2)%3]*A[(i+2)%3][(j+1)%3]))/determinant;
+              }
+              }
+       }
+       
+    else
+    {
+        cout<<"the inverse of this matrix A is not possible since the determinant is 0"<<endl;
+        }   
+  cout<<endl;      
+    cout<<endl;   
+}
+ 
+ /*void X_mat()//function to find the value of A inverse x B
+ {
+  
+     C[3][1]=0;
+     
+      
+     
+     } 
+
+ */
+    
